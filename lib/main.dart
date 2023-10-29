@@ -20,6 +20,7 @@ class ImageExplorer extends StatefulWidget {
 class _ImageExplorerState extends State<ImageExplorer> {
   String heroName = "";
   int n = 0;
+  int nAnt = 0;
   List<HeroModel> heroList = [
     HeroModel(
       name: "Batman",
@@ -67,7 +68,7 @@ class _ImageExplorerState extends State<ImageExplorer> {
                 child: CircleAvatar(
                   radius: 60.0,
                   backgroundImage: NetworkImage(heroList[n].imageUrl),
-                ) //Image.network(heroList[n].imageUrl),
+                ) //Image.network(heroList[n].imageUrl,heigth : 250, fit: BoxFit.covert,),
                 ),
             SizedBox(height: 20),
             Text("Nombre del Heroe : $heroName"),
@@ -85,6 +86,12 @@ class _ImageExplorerState extends State<ImageExplorer> {
                 ElevatedButton(
                     onPressed: () {
                       n = Random().nextInt(heroList.length);
+                      if (nAnt == n) {
+                        n = Random().nextInt(heroList.length);
+                      } else {
+                        nAnt = n;
+                      }
+
                       heroName = "";
                       setState(() {});
                     },
